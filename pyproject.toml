@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scenebloom"
+version = "0.1.0"
+description = "Agentic indoor environment generation with realistic and diverse layouts for embodied learning"
+readme = "README.md"
+license = {file = "LICENSE"}
+# The generation environment (envs/scenebloom.yml) is Python 3.10.
+requires-python = ">=3.10,<3.11"
+# Core dependencies only. The full GPU stack (torch, diffusers, Genesis,
+# OVMono3D and its CUDA extensions) is installed by envs/install_scenebloom.sh.
+dependencies = [
+    "pydantic>=2.0,<3.0",
+    "numpy>=1.24,<2",
+    "pillow>=10.0",
+    "requests>=2.28",
+    "opencv-python-headless>=4.8",
+    "matplotlib>=3.7",
+    "trimesh>=4.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["scenebloom*"]

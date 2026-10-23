@@ -1,0 +1,13 @@
+.env
+__pycache__/
+*.pyc
+.cache/
+checkpoints/
+third_party/
+outputs/
+data/m3dlayout/
+data/embeddings*/
+data/m3dlayout_room_labels/
+data/materials/ambientcg_full/
+data/lora_assets/glb/
+data/lora_assets/glb_canonical/

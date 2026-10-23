@@ -1,0 +1,142 @@
+{
+  "entries": [
+    {
+      "category": "armchair",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C1",
+      "axis_alignment_prior": "weak"
+    },
+    {
+      "category": "bathroom_washstand",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C1",
+      "axis_alignment_prior": "strong"
+    },
+    {
+      "category": "bathtub",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C1",
+      "axis_alignment_prior": "strong"
+    },
+    {
+      "category": "bed",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C1",
+      "axis_alignment_prior": "strong"
+    },
+    {
+      "category": "bookshelf",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C1",
+      "axis_alignment_prior": "strong"
+    },
+    {
+      "category": "cabinet",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C1",
+      "axis_alignment_prior": "strong"
+    },
+    {
+      "category": "chair",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C1",
+      "axis_alignment_prior": "weak"
+    },
+    {
+      "category": "chest_of_drawers",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C1",
+      "axis_alignment_prior": "strong"
+    },
+    {
+      "category": "coffee_table",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C2",
+      "axis_alignment_prior": "strong"
+    },
+    {
+      "category": "desk",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C1",
+      "axis_alignment_prior": "strong"
+    },
+    {
+      "category": "dining_chair",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C1",
+      "axis_alignment_prior": "weak"
+    },
+    {
+      "category": "dining_table",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C2",
+      "axis_alignment_prior": "strong"
+    },
+    {
+      "category": "dressing_table",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C1",
+      "axis_alignment_prior": "strong"
+    },
+    {
+      "category": "floor_lamp",
+      "has_structural_axis": false,
+      "rotation_symmetry": "Cinf",
+      "axis_alignment_prior": "none"
+    },
+    {
+      "category": "nightstand",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C1",
+      "axis_alignment_prior": "strong"
+    },
+    {
+      "category": "plant",
+      "has_structural_axis": false,
+      "rotation_symmetry": "Cinf",
+      "axis_alignment_prior": "none"
+    },
+    {
+      "category": "side_table",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C4",
+      "axis_alignment_prior": "weak"
+    },
+    {
+      "category": "sofa",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C1",
+      "axis_alignment_prior": "strong"
+    },
+    {
+      "category": "stool",
+      "has_structural_axis": false,
+      "rotation_symmetry": "C4",
+      "axis_alignment_prior": "weak"
+    },
+    {
+      "category": "toilet",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C1",
+      "axis_alignment_prior": "strong"
+    },
+    {
+      "category": "trashcan",
+      "has_structural_axis": false,
+      "rotation_symmetry": "Cinf",
+      "axis_alignment_prior": "none"
+    },
+    {
+      "category": "tv_stand",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C1",
+      "axis_alignment_prior": "strong"
+    },
+    {
+      "category": "wardrobe",
+      "has_structural_axis": true,
+      "rotation_symmetry": "C1",
+      "axis_alignment_prior": "strong"
+    }
+  ]
+}

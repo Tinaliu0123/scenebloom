@@ -1,0 +1,79 @@
+# Build it with envs/install_scenebloom.sh, which also compiles the CUDA extensions
+# in the required order.
+name: scenebloom
+channels:
+  - nvidia/label/cuda-12.1.1
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - libgl
+  - libgl-devel
+  - libglu
+  - libegl
+  - libegl-devel
+  - mesalib
+  # CUDA 12.1 compiler and gcc 11 for the extensions the install script builds
+  - cuda-nvcc
+  - cuda-cudart-dev
+  - cuda-libraries-dev
+  - gxx_linux-64=11
+  - pip:
+      # torch is installed first by install_scenebloom.sh from the cu121 index:
+      #   torch==2.5.1+cu121 torchvision==0.20.1+cu121
+      - numpy==1.26.4
+      # FLUX / FreeFuse
+      - diffusers==0.37.0
+      - transformers==4.57.6
+      - huggingface-hub>=0.34,<1.0
+      - accelerate==1.13.0
+      - peft==0.18.1
+      - safetensors==0.7.0
+      - sentencepiece
+      - protobuf
+      # LoRA training (asset_generation/lora_training)
+      - prodigyopt==1.1.2
+      - tensorboard==2.21.0
+      # retrieval and materials
+      - sentence-transformers==5.1.1
+      - open_clip_torch==3.3.0
+      - ftfy
+      - timm>=1.0,<1.1
+      # Genesis renderer (genesis-world itself is installed with --no-deps by the script)
+      - coacd==1.0.7
+      - freetype-py==2.5.1
+      - lxml==6.0.2
+      - moviepy==1.0.3
+      - numba==0.60.0
+      - OpenEXR==3.4.0
+      - pycollada==0.9.2
+      - PyGEL3D==0.6.1
+      - pyglet==2.1.9
+      - pygltflib==1.16.0
+      - pymeshlab==2025.7
+      - scikit-image==0.24.0
+      - screeninfo==0.8.1
+      - taichi==1.7.3
+      - tetgen==0.6.4
+      - libigl==2.6.1
+      - mujoco==3.2.5
+      # geometry and numerics
+      - scipy==1.13.1
+      - opencv-python-headless==4.11.0.86
+      - open3d==0.18.0
+      - trimesh==4.8.3
+      - shapely==2.0.7
+      - python-fcl
+      - imageio
+      - matplotlib
+      - pillow
+      - tqdm
+      # API clients and config
+      - pydantic>=2.12,<2.13
+      - openai==1.109.1
+      - requests
+      # detectron2 runtime deps (detectron2 itself is built by the script)
+      - fvcore==0.1.5.post20221221
+      - iopath==0.1.9
+      # OVMono3D backbones
+      - einops==0.8.1

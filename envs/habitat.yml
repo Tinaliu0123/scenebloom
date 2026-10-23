@@ -1,0 +1,15 @@
+# habitat-sim 0.3.3 is published for Python 3.9 only, so it cannot share the
+# Python 3.10 generation environment.
+name: habitat
+channels:
+  - aihabitat
+  - conda-forge
+dependencies:
+  - python=3.9
+  - habitat-sim=0.3.3=py3.9_headless_bullet*
+  - pip
+  - pip:
+      - numpy==1.26.4
+      - pillow==10.4.0
+      - shapely==2.0.7
+      - trimesh==4.12.2

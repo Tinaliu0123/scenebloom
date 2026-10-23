@@ -1,0 +1,22 @@
+{
+  "bathroom": {
+    "floor": ["Tiles046", "Tiles057", "Tiles053", "Tiles062", "Tiles040"],
+    "wall": ["Plaster001", "Plaster002", "PaintedPlaster017", "Plaster003", "Styrofoam003"]
+  },
+  "bedroom": {
+    "floor": ["Wood082A", "Wood082B", "Wood083A", "Wood085B", "Wood083B"],
+    "wall": ["Plaster001", "PaintedPlaster017", "Plaster002", "Leather039", "Wood037"]
+  },
+  "dining": {
+    "floor": ["Wood082A", "Wood082B", "Wood083A", "Wood083B", "Wood085B"],
+    "wall": ["Plaster001", "Plaster002", "PaintedPlaster017", "Wallpaper001C", "Plaster003"]
+  },
+  "living": {
+    "floor": ["Wood082A", "Wood082B", "Wood083A", "Wood083B", "Wood085B"],
+    "wall": ["Plaster001", "Plaster002", "PaintedPlaster017", "Leather039", "Wood037"]
+  },
+  "office": {
+    "floor": ["Carpet009", "Carpet008", "Carpet004", "Leather018", "Carpet016"],
+    "wall": ["Plaster001", "PaintedPlaster017", "Plaster002", "Wallpaper001C", "Styrofoam003"]
+  }
+}

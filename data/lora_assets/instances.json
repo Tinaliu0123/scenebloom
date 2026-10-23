@@ -1,0 +1,464 @@
+{
+  "categories": [
+    {
+      "category": "bed",
+      "trigger": "yte",
+      "noun": "bed",
+      "output_name": "bed__yte"
+    },
+    {
+      "category": "sofa",
+      "trigger": "mib",
+      "noun": "sofa",
+      "output_name": "sofa__mib"
+    },
+    {
+      "category": "armchair",
+      "trigger": "niu",
+      "noun": "armchair",
+      "output_name": "armchair__niu"
+    },
+    {
+      "category": "chair",
+      "trigger": "iru",
+      "noun": "office chair",
+      "output_name": "chair__iru"
+    },
+    {
+      "category": "stool",
+      "trigger": "aroa",
+      "noun": "stool",
+      "output_name": "stool__aroa"
+    },
+    {
+      "category": "desk",
+      "noun": "desk"
+    },
+    {
+      "category": "coffee_table",
+      "trigger": "vaca",
+      "noun": "coffee table",
+      "output_name": "coffee_table__vaca"
+    },
+    {
+      "category": "side_table",
+      "trigger": "spon",
+      "noun": "side table",
+      "output_name": "side_table__spon"
+    },
+    {
+      "category": "dressing_table",
+      "noun": "vanity"
+    },
+    {
+      "category": "cabinet",
+      "noun": "cabinet"
+    },
+    {
+      "category": "wardrobe",
+      "noun": "wardrobe"
+    },
+    {
+      "category": "chest_of_drawers",
+      "noun": "dresser"
+    },
+    {
+      "category": "nightstand",
+      "noun": "nightstand"
+    },
+    {
+      "category": "bookshelf",
+      "trigger": "cmdr",
+      "noun": "bookshelf",
+      "output_name": "bookshelf__cmdr"
+    },
+    {
+      "category": "floor_lamp",
+      "trigger": "lexa",
+      "noun": "floor lamp",
+      "output_name": "floor_lamp__lexa"
+    },
+    {
+      "category": "plant",
+      "trigger": "zas",
+      "noun": "potted plant",
+      "output_name": "plant__zas"
+    },
+    {
+      "category": "tv_stand",
+      "noun": "tv stand"
+    },
+    {
+      "category": "dining_table",
+      "trigger": "froa",
+      "noun": "dining table",
+      "output_name": "dining_table__froa"
+    },
+    {
+      "category": "toilet",
+      "noun": "toilet"
+    },
+    {
+      "category": "bathtub",
+      "trigger": "zelm",
+      "noun": "bathtub",
+      "output_name": "bathtub__zelm"
+    },
+    {
+      "category": "bathroom_washstand",
+      "trigger": "zite",
+      "noun": "bathroom washstand",
+      "output_name": "bathroom_washstand__zite"
+    },
+    {
+      "category": "trashcan",
+      "trigger": "jija",
+      "noun": "trashcan",
+      "output_name": "trashcan__jija"
+    },
+    {
+      "category": "dining_chair",
+      "trigger": "wapu",
+      "noun": "dining chair",
+      "output_name": "chair_01__wapu"
+    }
+  ],
+  "variants": [
+    {
+      "mesh": "chair_01",
+      "category": "chair",
+      "trigger": "wapu",
+      "output_name": "chair_01__wapu"
+    },
+    {
+      "mesh": "chair_02",
+      "category": "chair",
+      "trigger": "bete",
+      "output_name": "chair_02__bete"
+    },
+    {
+      "mesh": "chair_03",
+      "category": "chair",
+      "trigger": "sexa",
+      "output_name": "chair_03__sexa"
+    },
+    {
+      "mesh": "chair_04",
+      "category": "chair",
+      "trigger": "paro",
+      "output_name": "chair_04__paro"
+    },
+    {
+      "mesh": "bed_01",
+      "category": "bed",
+      "trigger": "meru",
+      "output_name": "bed_01__meru"
+    },
+    {
+      "mesh": "bed_02",
+      "category": "bed",
+      "trigger": "malu",
+      "output_name": "bed_02__malu"
+    },
+    {
+      "mesh": "sofa_01",
+      "category": "sofa",
+      "trigger": "belo",
+      "output_name": "sofa_01__belo"
+    },
+    {
+      "mesh": "sofa_02",
+      "category": "sofa",
+      "trigger": "peso",
+      "output_name": "sofa_02__peso"
+    },
+    {
+      "mesh": "sofa_03",
+      "category": "sofa",
+      "trigger": "tiko",
+      "output_name": "sofa_03__tiko"
+    },
+    {
+      "mesh": "sofa_04",
+      "category": "sofa",
+      "trigger": "napa",
+      "output_name": "sofa_04__napa"
+    },
+    {
+      "mesh": "floor_lamp_01",
+      "category": "floor_lamp",
+      "trigger": "kuho",
+      "output_name": "floor_lamp_01__kuho"
+    },
+    {
+      "mesh": "floor_lamp_02",
+      "category": "floor_lamp",
+      "trigger": "jisi",
+      "output_name": "floor_lamp_02__jisi"
+    },
+    {
+      "mesh": "armchair_01",
+      "category": "armchair",
+      "trigger": "cane",
+      "output_name": "armchair_01__cane"
+    },
+    {
+      "mesh": "armchair_02",
+      "category": "armchair",
+      "trigger": "lasi",
+      "output_name": "armchair_02__lasi"
+    },
+    {
+      "mesh": "bathtub_02",
+      "category": "bathtub",
+      "trigger": "zixi",
+      "output_name": "bathtub_02__zixi"
+    },
+    {
+      "mesh": "bookshelf_02",
+      "category": "bookshelf",
+      "trigger": "fowi",
+      "output_name": "bookshelf_02__fowi"
+    },
+    {
+      "mesh": "dining_table_01",
+      "category": "dining_table",
+      "trigger": "cori",
+      "output_name": "dining_table_01__cori"
+    },
+    {
+      "mesh": "dining_table_02",
+      "category": "dining_table",
+      "trigger": "lopi",
+      "output_name": "dining_table_02__lopi"
+    },
+    {
+      "mesh": "plant_01",
+      "category": "plant",
+      "trigger": "doho",
+      "output_name": "plant_01__doho"
+    },
+    {
+      "mesh": "plant_02",
+      "category": "plant",
+      "trigger": "sowi",
+      "output_name": "plant_02__sowi"
+    },
+    {
+      "mesh": "plant_03",
+      "category": "plant",
+      "trigger": "duju",
+      "output_name": "plant_03__duju"
+    },
+    {
+      "mesh": "stool_01",
+      "category": "stool",
+      "trigger": "hohe",
+      "output_name": "stool_01__hohe"
+    },
+    {
+      "mesh": "bathtub_01",
+      "category": "bathtub",
+      "trigger": "pobe",
+      "output_name": "bathtub_01__pobe"
+    },
+    {
+      "mesh": "bookshelf_01",
+      "category": "bookshelf",
+      "trigger": "xute",
+      "output_name": "bookshelf_01__xute"
+    },
+    {
+      "mesh": "coffee_table_01",
+      "category": "coffee_table",
+      "trigger": "gipa",
+      "output_name": "coffee_table_01__gipa"
+    },
+    {
+      "mesh": "coffee_table_02",
+      "category": "coffee_table",
+      "trigger": "lenu",
+      "output_name": "coffee_table_02__lenu"
+    },
+    {
+      "mesh": "side_table_01",
+      "category": "side_table",
+      "trigger": "pefa",
+      "output_name": "side_table_01__pefa"
+    },
+    {
+      "mesh": "side_table_02",
+      "category": "side_table",
+      "trigger": "wice",
+      "output_name": "side_table_02__wice"
+    },
+    {
+      "mesh": "stool_02",
+      "category": "stool",
+      "trigger": "coxi",
+      "output_name": "stool_02__coxi"
+    },
+    {
+      "mesh": "cabinet_art01",
+      "category": "cabinet",
+      "trigger": "bica",
+      "output_name": "cabinet_art01__bica"
+    },
+    {
+      "mesh": "cabinet_art02",
+      "category": "cabinet",
+      "trigger": "xoju",
+      "output_name": "cabinet_art02__xoju"
+    },
+    {
+      "mesh": "cabinet_art03",
+      "category": "cabinet",
+      "trigger": "weli",
+      "output_name": "cabinet_art03__weli"
+    },
+    {
+      "mesh": "cabinet_art04",
+      "category": "cabinet",
+      "trigger": "gega",
+      "output_name": "cabinet_art04__gega"
+    },
+    {
+      "mesh": "chest_of_drawers_art01",
+      "category": "chest_of_drawers",
+      "trigger": "tulu",
+      "output_name": "chest_of_drawers_art01__tulu"
+    },
+    {
+      "mesh": "chest_of_drawers_art02",
+      "category": "chest_of_drawers",
+      "trigger": "veli",
+      "output_name": "chest_of_drawers_art02__veli"
+    },
+    {
+      "mesh": "chest_of_drawers_art03",
+      "category": "chest_of_drawers",
+      "trigger": "howo",
+      "output_name": "chest_of_drawers_art03__howo"
+    },
+    {
+      "mesh": "chest_of_drawers_art04",
+      "category": "chest_of_drawers",
+      "trigger": "kupe",
+      "output_name": "chest_of_drawers_art04__kupe"
+    },
+    {
+      "mesh": "desk_art01",
+      "category": "desk",
+      "trigger": "hesu",
+      "output_name": "desk_art01__hesu"
+    },
+    {
+      "mesh": "desk_art02",
+      "category": "desk",
+      "trigger": "niru",
+      "output_name": "desk_art02__niru"
+    },
+    {
+      "mesh": "desk_art03",
+      "category": "desk",
+      "trigger": "pivu",
+      "output_name": "desk_art03__pivu"
+    },
+    {
+      "mesh": "dressing_table_art01",
+      "category": "dressing_table",
+      "trigger": "wubi",
+      "output_name": "dressing_table_art01__wubi"
+    },
+    {
+      "mesh": "dressing_table_art02",
+      "category": "dressing_table",
+      "trigger": "rulu",
+      "output_name": "dressing_table_art02__rulu"
+    },
+    {
+      "mesh": "nightstand_art01",
+      "category": "nightstand",
+      "trigger": "jutu",
+      "output_name": "nightstand_art01__jutu"
+    },
+    {
+      "mesh": "nightstand_art02",
+      "category": "nightstand",
+      "trigger": "jupi",
+      "output_name": "nightstand_art02__jupi"
+    },
+    {
+      "mesh": "nightstand_art03",
+      "category": "nightstand",
+      "trigger": "maba",
+      "output_name": "nightstand_art03__maba"
+    },
+    {
+      "mesh": "nightstand_art04",
+      "category": "nightstand",
+      "trigger": "toxa",
+      "output_name": "nightstand_art04__toxa"
+    },
+    {
+      "mesh": "toilet_art01",
+      "category": "toilet",
+      "trigger": "haje",
+      "output_name": "toilet_art01__haje"
+    },
+    {
+      "mesh": "toilet_art02",
+      "category": "toilet",
+      "trigger": "geze",
+      "output_name": "toilet_art02__geze"
+    },
+    {
+      "mesh": "toilet_art03",
+      "category": "toilet",
+      "trigger": "posa",
+      "output_name": "toilet_art03__posa"
+    },
+    {
+      "mesh": "toilet_art04",
+      "category": "toilet",
+      "trigger": "xase",
+      "output_name": "toilet_art04__xase"
+    },
+    {
+      "mesh": "tv_stand_art01",
+      "category": "tv_stand",
+      "trigger": "qofi",
+      "output_name": "tv_stand_art01__qofi"
+    },
+    {
+      "mesh": "tv_stand_art02",
+      "category": "tv_stand",
+      "trigger": "xala",
+      "output_name": "tv_stand_art02__xala"
+    },
+    {
+      "mesh": "wardrobe_art01",
+      "category": "wardrobe",
+      "trigger": "namu",
+      "output_name": "wardrobe_art01__namu"
+    },
+    {
+      "mesh": "wardrobe_art02",
+      "category": "wardrobe",
+      "trigger": "xidu",
+      "output_name": "wardrobe_art02__xidu"
+    },
+    {
+      "mesh": "wardrobe_art03",
+      "category": "wardrobe",
+      "trigger": "duti",
+      "output_name": "wardrobe_art03__duti"
+    },
+    {
+      "mesh": "wardrobe_art04",
+      "category": "wardrobe",
+      "trigger": "zezu",
+      "output_name": "wardrobe_art04__zezu"
+    }
+  ]
+}
