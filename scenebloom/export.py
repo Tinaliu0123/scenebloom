@@ -36,6 +36,7 @@ def room_shell(room: BBox3D, floor_image: Image.Image,
                wall_image: Image.Image) -> list[tuple[str, trimesh.Trimesh]]:
     """The floor slab under the room box and one wall slab centred on each of its edges."""
     (cx, _, cz), (sx, _, sz) = room.center, room.size
+    cz = -cz
     floor = trimesh.creation.box(extents=(sx, FLOOR_THICKNESS, sz))
     floor.apply_translation([cx, -FLOOR_THICKNESS / 2.0, cz])
     shell = [("floor", _textured(floor, floor_image, 0, 2))]
@@ -67,7 +68,7 @@ def object_mesh(obj: PlacedObject) -> trimesh.Trimesh:
     c, s = math.cos(obj.pose.rotation_y), math.sin(obj.pose.rotation_y)
     x, y, z = obj.pose.center
     mesh.apply_transform(np.array([[c, 0.0, s, x], [0.0, 1.0, 0.0, y],
-                                   [-s, 0.0, c, z], [0.0, 0.0, 0.0, 1.0]]))
+                                   [-s, 0.0, c, -z], [0.0, 0.0, 0.0, 1.0]]))
     return mesh
 
 
