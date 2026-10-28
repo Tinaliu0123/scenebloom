@@ -4,6 +4,7 @@
 
 [![arXiv](https://img.shields.io/badge/arXiv-2610.32978-b31b1b.svg?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2610.32978)
 [![Project Website](https://img.shields.io/badge/Project-Website-1f4e9c.svg?logo=googlechrome&logoColor=white)](https://tinaliu0123.github.io/scenebloom/)
+[![X Thread](https://img.shields.io/badge/-Thread-000000.svg?logo=x&logoColor=white)](https://x.com/l_yuhan7272/status/2115473850829811811)
 
 </div>
 
