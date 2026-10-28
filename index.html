@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SceneBloom: Realistic, Diverse Rooms for Embodied Learning</title>
+<meta name="description" content="SceneBloom compiles diffusion-sampled furniture arrangements into collision-free, physically stable 3D rooms that train better object-navigation agents.">
+<link rel="canonical" href="https://tinaliu0123.github.io/scenebloom/">
+
+<meta name="citation_title" content="SceneBloom: Agentic Indoor Environment Generation with Realistic and Diverse Layouts for Embodied Learning">
+<meta name="citation_author" content="Liu, Yuhan">
+<meta name="citation_author" content="Qin, Lianhui">
+<meta name="citation_author" content="Wan, Shenji">
+<meta name="citation_publication_date" content="2026/10/23">
+<meta name="citation_pdf_url" content="https://arxiv.org/pdf/2610.32978">
+<meta name="citation_arxiv_id" content="2610.32978">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="SceneBloom: Agentic Indoor Environment Generation with Realistic and Diverse Layouts for Embodied Learning">
+<meta property="og:description" content="SceneBloom compiles diffusion-sampled furniture arrangements into collision-free, physically stable 3D rooms that train better object-navigation agents.">
+<meta property="og:url" content="https://tinaliu0123.github.io/scenebloom/">
+<meta property="og:image" content="https://tinaliu0123.github.io/scenebloom/static/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "SceneBloom: Agentic Indoor Environment Generation with Realistic and Diverse Layouts for Embodied Learning",
+  "author": [
+    {"@type": "Person", "name": "Yuhan Liu"},
+    {"@type": "Person", "name": "Lianhui Qin"},
+    {"@type": "Person", "name": "Shenji Wan"}
+  ],
+  "datePublished": "2026-10-23",
+  "url": "https://tinaliu0123.github.io/scenebloom/",
+  "sameAs": "https://arxiv.org/abs/2610.32978"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap" rel="stylesheet">
+
+<style>
+  /* Light page in the common project-page frame: one centred 960px column (Holodeck's width), centred section
+     titles, white sections alternating with a pale grey band, one accent colour for our method and for links.
+     One type family; headings differ only in size and weight. */
+  :root {
+    color-scheme: light;
+    --ink: #1d2127; --ink-2: #454b54; --muted: #6b717b; --bg: #ffffff; --band: #f5f6f8; --line: #e2e5ea;
+    --ours: #1f4e9c; --nav: #137556; --base: #c5cad2; --btn: #24292f;
+    --h2: #1d2127; --h3: #1f4e9c; --mark: #d9e4f6;
+    --head: "Newsreader", Georgia, "Times New Roman", serif;
+    --body: "Newsreader", Georgia, "Times New Roman", serif;
+    --grad: linear-gradient(90deg, #1f4e9c 10%, #2b9aa0 90%);
+    --col: 840px; --wide: 840px; --widest: 840px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 56px; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 19px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 11; background: var(--bg); }
+  a { color: var(--ours); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--ours); outline-offset: 3px; border-radius: 4px; }
+  .page { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .col, .wide, .widest { margin-left: auto; margin-right: auto; }
+  .col { max-width: var(--col); }
+  .wide { max-width: var(--wide); }
+  .widest { max-width: var(--widest); }
+
+  /* Header */
+  header { padding-block: 48px 0; text-align: center; }
+  header.col { max-width: var(--wide); }
+  h1 { margin: 0; font-family: var(--head); }
+  h1 { font-size: clamp(28px, 4.2vw, 42px); line-height: 1.2; font-weight: 600; color: var(--ink); text-wrap: balance; }
+  h1 .name, .toc .brand span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .authors { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 26px; margin: 22px 0 0; font: 400 19px/1.5 var(--head); }
+  .authors a { color: inherit; }
+  .affils { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 22px; margin: 6px 0 0; color: var(--ink-2); font: 400 18px/1.5 var(--head); }
+  .equal { margin: 2px 0 0; color: var(--muted); font-size: 16.5px; }
+  .buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 24px 0 0; }
+  .buttons a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; border-radius: 999px; background: var(--btn); color: #fff; font: 500 17px var(--head); }
+  .buttons a:hover { text-decoration: none; background: #3a4048; }
+  .buttons svg { width: 18px; height: 18px; flex: none; }
+
+  /* Top bar: the project name on the left, the section links on the right. Hidden over the title; it slides in once
+     the title has scrolled away (script below), or when a link in it gets keyboard focus. */
+  .toc { position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0; z-index: 10; background: rgb(255 255 255 / .94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); transform: translateY(calc(-100% - env(safe-area-inset-top, 0px) - 1px)); transition: transform .25s ease; }
+  .toc.shown, .toc:focus-within { transform: none; }
+  .toc .inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; max-width: var(--widest); margin: 0 auto; }
+  .toc .brand { display: flex; align-items: center; gap: 10px; flex: none; padding: 12px 0; font: 600 23px/1 var(--head); }
+  .toc .brand:hover { text-decoration: none; }
+  .toc .links { display: flex; gap: 4px; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+  .toc .links::-webkit-scrollbar { display: none; }
+  .toc .links a { flex: none; padding: 17px 10px 15px; color: var(--muted); font: 500 17px var(--head); border-bottom: 2px solid transparent; }
+  .toc .links a:hover { text-decoration: none; color: var(--ink); }
+  .toc .links a.on { color: var(--ink); border-bottom-color: var(--ours); }
+  @media (max-width: 720px) { .toc .brand { font-size: 21px; } .toc .inner { gap: 8px; } .toc .links a { padding-inline: 9px; font-size: 17px; } }
+
+  /* Media */
+  .media { display: block; width: 100%; max-width: 100%; height: auto; background: #fff; border-radius: 8px; border: 1px solid var(--line); }
+  video.media { aspect-ratio: 16 / 9; object-fit: cover; }
+  video.media.fig { aspect-ratio: 2880 / 1476; object-fit: contain; }
+  /* Play-once figures: a thin bar along the bottom edge shows the animation is running; Replay sits on the last frame. */
+  .player { position: relative; }
+  .player .progress { position: absolute; left: 1px; right: 1px; bottom: 1px; height: 4px; border-radius: 0 0 7px 7px; overflow: hidden; pointer-events: none; }
+  .player .progress span { display: block; width: 100%; height: 100%; background: var(--ours); opacity: .55; transform: scaleX(0); transform-origin: left; }
+  .replay { position: absolute; right: 14px; bottom: 14px; display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; border: 0; border-radius: 999px; background: rgb(36 41 47 / .82); color: #fff; font: 500 16px var(--head); cursor: pointer; box-shadow: 0 2px 8px rgb(0 0 0 / .18); }
+  .replay:hover { background: var(--btn); }
+  .replay svg { width: 16px; height: 16px; }
+  .replay[hidden] { display: none; }
+  figure { margin: 0; }
+  figcaption { margin-top: 10px; font-size: 16.5px; line-height: 1.5; color: var(--muted); }
+  figcaption[data-cap] { white-space: pre-line; font-size: 15.5px; }
+  .teaser { padding-block: 28px 0; }
+
+  /* Sections: centred titles, white and grey bands alternate */
+  section { padding-block: 48px; }
+  section.band { background: var(--band); }
+  h2 { margin: 0 0 24px; font: 600 29px/1.2 var(--head); text-align: center; text-wrap: balance; color: var(--h2); }
+  h3 { margin: 0 0 6px; font: 600 21px/1.3 var(--head); color: var(--h3); }
+  .stack { display: grid; gap: 28px; }
+  .stack > .col { width: 100%; }
+  .abstract p { margin: 0; text-align: justify; hyphens: auto; color: var(--ink-2); }
+  .lead { margin-block: 0; color: var(--ink-2); }
+  .claim { margin: 0; color: var(--ink-2); }
+  .block { display: grid; gap: 18px; }
+  .block + .block { margin-top: 28px; }
+  /* Findings: a bold lead-in sentence, then one supporting sentence */
+  .findings { display: grid; gap: 6px; margin-block: 0; }
+  .findings p { position: relative; padding-left: 1.1em; }
+  .findings p::before { content: "•"; position: absolute; left: .1em; color: var(--ours); font-weight: 700; }
+  .findings p { margin: 0; color: var(--ink-2); }
+  .findings b { color: var(--ink); font-weight: 600; }
+  /* Key numbers and claims inside a sentence: bold with a highlighter stroke */
+  .hl { font-weight: 600; color: var(--ink); background: linear-gradient(transparent 60%, var(--mark) 60%); padding-inline: 1px; }
+
+  /* Room examples: one column per room, 360° view above eye level */
+  .grid-wrap { overflow-x: auto; overscroll-behavior-x: contain; padding-bottom: 4px; }
+  .rooms { display: grid; grid-template-columns: repeat(5, minmax(150px, 1fr)); gap: 12px; min-width: 820px; }
+  .rooms .head { margin: 0; font: 500 18px/1.3 var(--head); text-align: center; }
+  .tile { display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 8px; background: #fff; overflow: hidden; cursor: zoom-in; }
+  .tile video { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .tile:hover { border-color: var(--base); }
+  .rooms-note { margin: 12px 0 0; text-align: center; font-size: 16.5px; color: var(--muted); }
+  dialog.zoom { width: min(960px, 100vw - 32px); padding: 0; border: 0; border-radius: 10px; background: #fff; box-shadow: 0 12px 40px rgb(0 0 0 / .25); }
+  dialog.zoom::backdrop { background: rgb(20 24 30 / .6); }
+  dialog.zoom video { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  dialog.zoom p { margin: 0; padding: 10px 16px 12px; font: 500 16px var(--head); }
+  dialog.zoom button { position: absolute; top: 8px; right: 8px; width: 34px; height: 34px; border: 0; border-radius: 50%; background: rgb(255 255 255 / .9); color: var(--ink); font: 500 20px/1 var(--head); cursor: pointer; }
+
+  /* Physical validity bars */
+  .bars { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 56px; padding: 22px 24px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+  @media (max-width: 760px) { .bars { grid-template-columns: minmax(0, 1fr); } }
+  .chart h4 { margin: 0; font: 500 18px/1.35 var(--head); }
+  .chart .dir { margin: 0 0 12px; font-size: 15px; color: var(--muted); }
+  .row { display: grid; grid-template-columns: 124px minmax(0, 1fr) 66px; align-items: center; gap: 12px; padding-block: 5px; }
+  .row .m { font-size: 16.5px; color: var(--ink-2); }
+  .row .track { height: 18px; }
+  .row .bar { height: 100%; border-radius: 0 4px 4px 0; background: var(--base); }
+  .row .v { font-size: 16.5px; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
+  .row.ours .m, .row.ours .v { color: var(--ours); font-weight: 600; }
+  .row.ours .bar { background: var(--ours); }
+  .row .zero { width: 2px; height: 100%; background: var(--ours); }
+
+  .switch { display: inline-flex; gap: 4px; padding: 4px; margin: 0 0 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--band); }
+  .switch button { padding: 6px 16px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font: 500 15px var(--head); cursor: pointer; }
+  .switch button[aria-selected="true"] { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgb(0 0 0 / .14); }
+
+  .bibbox { position: relative; }
+  pre.bib { margin: 0; padding: 18px 20px; border: 1px solid var(--line); border-radius: 8px; background: #fff; font: 14px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-x: auto; }
+  .bibbox button { position: absolute; top: 10px; right: 10px; padding: 4px 14px; border: 1px solid #c9d8f0; border-radius: 999px; background: #e8f0fb; color: var(--ours); font: 500 15px var(--head); cursor: pointer; }
+  .bibbox button:hover { background: #dbe7f8; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .toc { transition: none; } .player .progress { display: none; } }
+</style>
+</head>
+<body>
+<nav class="toc" aria-label="Sections">
+  <div class="inner page">
+    <a class="brand" href="#" aria-label="SceneBloom, back to top"><span>SceneBloom</span></a>
+    <div class="links">
+      <a href="#abstract">Abstract</a><a href="#overview">Method</a><a href="#examples">Examples</a><a href="#comparison">Comparison</a><a href="#ablation">Ablation</a><a href="#navigation">Navigation</a><a href="#bibtex">BibTeX</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page top">
+
+<header class="col">
+  <h1><span class="name">SceneBloom</span>: Agentic Indoor Environment Generation with Realistic and Diverse Layouts for Embodied Learning</h1>
+  <p class="authors"><span><a href="https://tinaliu0123.github.io/">Yuhan Liu</a><sup>1</sup></span><span><a href="https://lianhui.ucsd.edu/">Lianhui Qin</a><sup>2,†</sup></span><span><a href="https://openreview.net/profile?id=~Shenji_Wan1">Shenji Wan</a><sup>1,†</sup></span></p>
+  <p class="affils"><span><sup>1</sup>New York University</span><span><sup>2</sup>University of California, San Diego</span></p>
+  <p class="equal"><sup>†</sup>Equal advising</p>
+  <nav class="buttons" aria-label="Paper links">
+    <a href="https://arxiv.org/pdf/2610.32978"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>Paper</a>
+    <a href="https://arxiv.org/abs/2610.32978"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 12 5l7 14M8 13h8"/></svg>arXiv</a>
+    <a href="https://github.com/Tinaliu0123/scenebloom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg>Code</a>
+  </nav>
+</header>
+
+<figure class="teaser wide">
+  <video class="media" src="static/teaser.mp4" poster="static/teaser.jpg" muted autoplay loop playsinline controls preload="auto" aria-label="SceneBloom overview: a prompt becomes zone proposals, a compiled 3D room, resampled layouts, and navigation results"></video>
+</figure>
+
+</div>
+
+<main>
+
+  <section id="abstract" class="page">
+    <div class="col abstract">
+      <h2>Abstract</h2>
+      <p>Training generalizable embodied agents requires realistic, varied, and simulation-ready indoor environments. Language-guided methods support semantic planning and object-level reasoning, but precise spatial grounding remains difficult. Visual generative models offer rich priors over plausible arrangements, yet their outputs require geometric reasoning to become physically valid 3D scenes. We introduce SceneBloom, an agentic framework that combines visual layout sampling with contract-guided 3D compilation. A hierarchical sampler uses diffusion priors to generate furniture arrangements within functional zones. A compiler then uses relations extracted from each proposal to guide geometric fitting and local pose correction. Across five room types, SceneBloom attains the highest visual quality and physical stability among the compared methods and is the only method with no detected mesh collisions and out-of-bounds objects. Its layouts are also closer to the distribution of real rooms than those of all compared baselines. Object navigation policies trained in these realistic scenes achieve a higher success rate in held-out real scans than those trained on an equal number of real training scans.</p>
+    </div>
+  </section>
+
+  <section id="overview" class="page band">
+    <div class="wide">
+      <h2>Method</h2>
+      <figure>
+        <div class="player">
+          <video class="media fig" data-src="static/method_anim.mp4" data-once data-start="static/method_anim.jpg" poster="static/method.webp" width="2880" height="1475" muted playsinline preload="none" aria-label="Pipeline: a VLM plans functional zones from the prompt and retrieved exemplar rooms; a diffusion model with asset LoRAs samples one visual proposal per zone; a VLM extracts relation contracts such as face(chair, desk); a geometric compiler fits zones hierarchically and refines poses to restore the contracts, producing the 3D scene."></video>
+          <div class="progress" aria-hidden="true"><span></span></div>
+          <button class="replay" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Replay</button>
+        </div>
+        <figcaption class="col">A VLM plans functional zones from the prompt and retrieved exemplar rooms. FLUX.1-dev with asset LoRA adapters samples each zone's arrangement as an image. A VLM extracts relation contracts from each proposal, and a hierarchical compiler fits the zones, assembles the room and refines poses to restore the contracts.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="examples" class="page">
+    <div class="widest">
+      <h2>Example Scenes</h2>
+      <div class="grid-wrap">
+        <div class="rooms" data-rooms>
+          <p class="head">Living room</p><p class="head">Bedroom</p><p class="head">Dining room</p><p class="head">Office</p><p class="head">Bathroom</p>
+          <button class="tile" type="button" data-label="Living room · 360° view"><video data-src="static/g_living.mp4" poster="static/g_living.jpg" muted loop playsinline preload="none" aria-label="Living room, 360° view"></video></button>
+          <button class="tile" type="button" data-label="Bedroom · 360° view"><video data-src="static/g_bedroom.mp4" poster="static/g_bedroom.jpg" muted loop playsinline preload="none" aria-label="Bedroom, 360° view"></video></button>
+          <button class="tile" type="button" data-label="Dining room · 360° view"><video data-src="static/g_dining.mp4" poster="static/g_dining.jpg" muted loop playsinline preload="none" aria-label="Dining room, 360° view"></video></button>
+          <button class="tile" type="button" data-label="Office · 360° view"><video data-src="static/g_office.mp4" poster="static/g_office.jpg" muted loop playsinline preload="none" aria-label="Office, 360° view"></video></button>
+          <button class="tile" type="button" data-label="Bathroom · 360° view"><video data-src="static/g_bathroom.mp4" poster="static/g_bathroom.jpg" muted loop playsinline preload="none" aria-label="Bathroom, 360° view"></video></button>
+          <button class="tile" type="button" data-label="Living room · eye level"><video data-src="static/g_living_eye.mp4" poster="static/g_living_eye.jpg" muted loop playsinline preload="none" aria-label="Living room at eye level"></video></button>
+          <button class="tile" type="button" data-label="Bedroom · eye level"><video data-src="static/g_bedroom_eye.mp4" poster="static/g_bedroom_eye.jpg" muted loop playsinline preload="none" aria-label="Bedroom at eye level"></video></button>
+          <button class="tile" type="button" data-label="Dining room · eye level"><video data-src="static/g_dining_eye.mp4" poster="static/g_dining_eye.jpg" muted loop playsinline preload="none" aria-label="Dining room at eye level"></video></button>
+          <button class="tile" type="button" data-label="Office · eye level"><video data-src="static/g_office_eye.mp4" poster="static/g_office_eye.jpg" muted loop playsinline preload="none" aria-label="Office at eye level"></video></button>
+          <button class="tile" type="button" data-label="Bathroom · eye level"><video data-src="static/g_bathroom_eye.mp4" poster="static/g_bathroom_eye.jpg" muted loop playsinline preload="none" aria-label="Bathroom at eye level"></video></button>
+        </div>
+      </div>
+      <p class="rooms-note">Top: 360° view. Bottom: eye level. Click a view to enlarge it.</p>
+    </div>
+  </section>
+
+  <section id="comparison" class="page band">
+    <div class="wide">
+      <h2>Comparison with Baselines</h2>
+      <p class="lead col">We compare with Holodeck, SceneWeaver and SAGE on 50 scenes in five room types. SceneBloom takes <span class="hl">2.7 min per layout</span>, about 27× faster than SAGE.</p>
+
+      <div class="block" style="margin-top: 36px">
+        <div class="col">
+          <h3>Realistic layouts, highest visual quality</h3>
+          <p class="claim">SceneBloom layouts are the <span class="hl">closest to real rooms</span> in Matterport3D and Scan2CAD, and score <span class="hl">highest on all four GPT-4o visual-quality axes</span>.</p>
+        </div>
+        <figure>
+          <img class="media" src="static/qualitative.webp" width="2880" height="1498" loading="lazy" alt="Bedroom, dining room and living room generated by Holodeck, SceneWeaver, SAGE and SceneBloom. Callouts: Holodeck chairs face away from the table; SceneWeaver sofa faces the wall; SAGE repeats decorative pottery on the floor and drops tabletop props onto the table base; SceneBloom chairs face the table and props rest on the tabletop.">
+        </figure>
+      </div>
+
+      <div class="block">
+        <div class="col">
+          <h3>Physically valid</h3>
+          <p class="claim">SceneBloom is the <span class="hl">only method with no detected mesh collisions or out-of-bounds objects</span>, and the most physically stable.</p>
+        </div>
+        <div class="bars" role="group" aria-label="Physical validity on 50 scenes per method">
+          <div class="chart">
+            <h4>Scenes with mesh collisions</h4>
+            <p class="dir">lower is better</p>
+            <div class="row" title="Holodeck: 78.0% of scenes"><span class="m">Holodeck</span><span class="track"><span class="bar" style="display:block;width:78%"></span></span><span class="v">78.0%</span></div>
+            <div class="row" title="SceneWeaver: 82.0% of scenes"><span class="m">SceneWeaver</span><span class="track"><span class="bar" style="display:block;width:82%"></span></span><span class="v">82.0%</span></div>
+            <div class="row" title="SAGE: 78.0% of scenes"><span class="m">SAGE</span><span class="track"><span class="bar" style="display:block;width:78%"></span></span><span class="v">78.0%</span></div>
+            <div class="row ours" title="SceneBloom: 0.0% of scenes"><span class="m">SceneBloom</span><span class="track"><span class="zero" style="display:block"></span></span><span class="v">0.0%</span></div>
+          </div>
+          <div class="chart">
+            <h4>Physically stable objects</h4>
+            <p class="dir">higher is better</p>
+            <div class="row" title="Holodeck: 35.1% of objects"><span class="m">Holodeck</span><span class="track"><span class="bar" style="display:block;width:35.1%"></span></span><span class="v">35.1%</span></div>
+            <div class="row" title="SceneWeaver: 45.3% of objects"><span class="m">SceneWeaver</span><span class="track"><span class="bar" style="display:block;width:45.3%"></span></span><span class="v">45.3%</span></div>
+            <div class="row" title="SAGE: 45.1% of objects"><span class="m">SAGE</span><span class="track"><span class="bar" style="display:block;width:45.1%"></span></span><span class="v">45.1%</span></div>
+            <div class="row ours" title="SceneBloom: 75.3% of objects"><span class="m">SceneBloom</span><span class="track"><span class="bar" style="display:block;width:75.3%"></span></span><span class="v">75.3%</span></div>
+          </div>
+        </div>
+        <div data-switch>
+          <div class="switch" role="tablist" aria-label="Physics video">
+            <button role="tab" aria-selected="true" data-src="static/collision.mp4" data-poster="static/collision.jpg" data-caption="Collision test, one room per method. Red marks objects that intersect another object.">Collision test</button>
+            <button role="tab" aria-selected="false" data-src="static/stability.mp4" data-poster="static/stability.jpg" data-caption="Each scene is placed under gravity as generated. The physics engine then separates any interpenetrating objects, which displaces some of them.">Physical stability</button>
+          </div>
+          <figure>
+            <video class="media" data-src="static/collision.mp4" poster="static/collision.jpg" muted loop playsinline preload="none" aria-label="Four-panel physics comparison video"></video>
+            <figcaption data-cap>Collision test, one room per method. Red marks objects that intersect another object.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ablation" class="page">
+    <div class="wide stack">
+      <div class="col">
+        <h2>Ablation</h2>
+        <p class="lead"><span class="hl">Visual sampling establishes layout quality</span>, and <span class="hl">contracts preserve it</span> through 3D compilation.</p>
+      </div>
+      <div class="findings col">
+        <p><b>Image proposals beat text layouts.</b> Proposals sampled from diffusion beat text layouts written by a VLM, on every metric.</p>
+        <p><b>Contracts keep the relations.</b> Contract guidance cuts contract violations from <span class="hl">37.45% to 4.25%</span>, still with no collisions.</p>
+      </div>
+      <figure class="player">
+        <video class="media" data-src="static/ablation.mp4" data-once data-start="static/ablation_start.jpg" poster="static/ablation.jpg" muted playsinline preload="none" aria-label="Ablation video: geometry-only compilation breaks relations such as a chair facing its desk; contract-guided compilation restores them; bar charts compare proposal types and contract guidance"></video>
+        <div class="progress" aria-hidden="true"><span></span></div>
+        <button class="replay" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Replay</button>
+      </figure>
+    </div>
+  </section>
+
+  <section id="navigation" class="page band">
+    <div class="wide stack">
+      <div class="col">
+        <h2>Object Navigation in Real Environments</h2>
+        <p class="lead">A SemExp object-navigation policy trained from scratch in SceneBloom houses raises success in held-out real homes from <span class="hl">29.7% to 35.3%</span> on average, <span class="hl">1.7× the gain</span> from training on the same number of real scans.</p>
+      </div>
+      <div class="findings col">
+        <p><b>Same assets, better arrangements.</b> SceneBloom houses beat randomized and agent-planned houses built from the same assets. Random placement often splits walkable floor, and agent-planned layouts are less realistic.</p>
+        <p><b>Better than real scans.</b> SceneBloom houses win even against scans from the test homes' own dataset, and give the policy more complete searches to learn from.</p>
+        <p><b>Controllable difficulty.</b> Adding furniture as occluders further improves transfer to real environments. Real multi-room homes often hide the goal behind walls and furniture, and zones let SceneBloom add this difficulty directly.</p>
+      </div>
+      <figure>
+        <video class="media" data-src="static/rollout.mp4" poster="static/rollout.jpg" muted loop playsinline preload="none" aria-label="A policy trained in SceneBloom houses finds a sofa in an unseen real home, next to success-rate curves over 40, 80 and 120 training houses"></video>
+      </figure>
+    </div>
+  </section>
+
+  <section id="bibtex" class="page">
+    <div class="col">
+      <h2>BibTeX</h2>
+      <div class="bibbox"><button type="button" id="copy-bib">Copy</button><pre class="bib"><code id="bibtext">@article{liu2026scenebloom,
+  title   = {SceneBloom: Agentic Indoor Environment Generation with Realistic and Diverse Layouts for Embodied Learning},
+  author  = {Liu, Yuhan and Qin, Lianhui and Wan, Shenji},
+  journal = {arXiv preprint arXiv:2610.32978},
+  year    = {2026}
+}</code></pre></div>
+    </div>
+  </section>
+</main>
+
+<dialog class="zoom" id="zoom" aria-label="Enlarged view">
+  <button type="button" aria-label="Close" data-close>×</button>
+  <video muted loop playsinline></video>
+  <p></p>
+</dialog>
+
+<script>
+(() => {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const play = v => { const p = v.play(); if (p) p.catch(() => {}); };
+  const load = v => { if (!v.getAttribute("src") && v.dataset.src) v.src = v.dataset.src; };
+  const lazy = document.querySelectorAll("video[data-src]:not([data-once])");
+  if (reduce) {
+    document.querySelectorAll("video").forEach(v => { v.removeAttribute("autoplay"); v.pause(); v.controls = true; load(v); });
+  } else if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { load(e.target); play(e.target); } else if (!e.target.paused) e.target.pause();
+    }), { rootMargin: "200px 0px", threshold: 0.15 });
+    lazy.forEach(v => io.observe(v));
+  } else {
+    lazy.forEach(v => { load(v); play(v); });
+  }
+
+  // The method figure and the ablation play once from the start when most of each has been on screen for a moment.
+  // Scrolled away before the end, they rewind, so the next view starts from the beginning again; once finished they
+  // stay on their last frame with Replay. A bar along the bottom edge shows the progress.
+  const DWELL_MS = 300;
+  if (!reduce && "IntersectionObserver" in window) {
+    const near = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) load(e.target); }),
+                                          { rootMargin: "400px 0px" });
+    const seen = new IntersectionObserver(entries => entries.forEach(e => {
+      const v = e.target;
+      clearTimeout(v._dwell);
+      if (e.isIntersecting) v._dwell = setTimeout(() => play(v), DWELL_MS);
+      else if (!v.ended) { v.pause(); v.currentTime = 0; }
+    }), { threshold: 0.6 });
+    document.querySelectorAll("video[data-once]").forEach(v => {
+      const box = v.closest(".player");
+      const again = box.querySelector(".replay");
+      const bar = box.querySelector(".progress span");
+      const tick = () => {
+        bar.style.transform = `scaleX(${v.duration ? v.currentTime / v.duration : 0})`;
+        if (!v.paused && !v.ended) requestAnimationFrame(tick);
+      };
+      v.poster = v.dataset.start;
+      near.observe(v);
+      seen.observe(v);
+      v.addEventListener("play", () => requestAnimationFrame(tick));
+      v.addEventListener("seeked", tick);
+      v.addEventListener("ended", () => { seen.unobserve(v); again.hidden = false; tick(); });
+      again.addEventListener("click", () => { again.hidden = true; v.currentTime = 0; play(v); });
+    });
+  }
+
+  // The top bar stays hidden while the title is on screen and slides in once it has scrolled above the viewport.
+  const toc = document.querySelector(".toc");
+  const title = document.querySelector("header");
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([e]) => toc.classList.toggle("shown", !e.isIntersecting && e.boundingClientRect.top < 0))
+      .observe(title);
+  } else {
+    toc.classList.add("shown");
+  }
+
+  const zoom = document.getElementById("zoom");
+  const zoomVideo = zoom.querySelector("video");
+  const zoomLabel = zoom.querySelector("p");
+  document.querySelectorAll(".tile").forEach(tile => tile.addEventListener("click", () => {
+    const v = tile.querySelector("video");
+    zoomVideo.poster = v.poster;
+    zoomVideo.src = v.dataset.src;
+    zoomVideo.controls = reduce;
+    zoomLabel.textContent = tile.dataset.label;
+    zoom.showModal();
+    if (!reduce) play(zoomVideo);
+  }));
+  zoom.addEventListener("click", e => { if (e.target === zoom || e.target.hasAttribute("data-close")) zoom.close(); });
+  zoom.addEventListener("close", () => { zoomVideo.pause(); zoomVideo.removeAttribute("src"); zoomVideo.load(); });
+
+  document.querySelectorAll("[data-switch]").forEach(box => {
+    const video = box.querySelector("video");
+    const cap = box.querySelector("[data-cap]");
+    const tabs = box.querySelectorAll("[role=tab]");
+    tabs.forEach(tab => tab.addEventListener("click", () => {
+      tabs.forEach(t => t.setAttribute("aria-selected", String(t === tab)));
+      video.poster = tab.dataset.poster;
+      video.dataset.src = tab.dataset.src;
+      video.src = tab.dataset.src;
+      cap.textContent = tab.dataset.caption;
+      if (!reduce) play(video);
+    }));
+  });
+
+  const btn = document.getElementById("copy-bib");
+  const code = document.getElementById("bibtext");
+  btn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(code.textContent);
+      btn.textContent = "Copied";
+    } catch (err) {
+      const range = document.createRange();
+      range.selectNodeContents(code);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      btn.textContent = "Selected, press Ctrl+C";
+    }
+    setTimeout(() => { btn.textContent = "Copy"; }, 1800);
+  });
+
+  const links = [...document.querySelectorAll(".toc .links a")];
+  const byId = new Map(links.map(a => [a.getAttribute("href").slice(1), a]));
+  if ("IntersectionObserver" in window) {
+    const spy = new IntersectionObserver(entries => entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(a => a.classList.remove("on"));
+      byId.get(e.target.id)?.classList.add("on");
+    }), { rootMargin: "-40% 0px -55% 0px" });
+    byId.forEach((_, id) => { const s = document.getElementById(id); if (s) spy.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
